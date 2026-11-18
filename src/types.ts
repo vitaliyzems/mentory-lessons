@@ -5,3 +5,8 @@ export interface ICourse {
   seats: number;
   version: number;
 }
+
+export interface IItem {
+  id: string;
+  title: string;
+}
