@@ -1,6 +1,6 @@
-import { memo, useState, useTransition } from 'react';
+import { memo, useDeferredValue, useState, useTransition } from 'react';
 import { getItems } from './data/items';
-import type { IItem } from './types';
+import type { IItem, SearchMode } from './types';
 import './App.css';
 
 const items = getItems();
@@ -30,51 +30,63 @@ const Results = memo(function Results({ query }: { query: string }) {
 });
 
 export function Search() {
-  const [isTransition, setIsTransition] = useState(false);
+  const [mode, setMode] = useState<SearchMode>('sync');
   const [text, setText] = useState('');
   const [listQuery, setListQuery] = useState('');
   const [isPending, startTransition] = useTransition();
 
+  const deferredValue = useDeferredValue(text);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (isTransition) {
-      setText(value);
+    setText(value);
 
+    if (mode === 'sync') {
+      setListQuery(value);
+    } else if (mode === 'transition') {
       startTransition(() => {
         setListQuery(value);
       });
-    } else {
-      setText(value);
-      setListQuery(value);
     }
   };
+
+  const handleModeChange = (nextMode: SearchMode) => {
+    setMode(nextMode);
+
+    if (nextMode !== 'deferred') {
+      setListQuery(text);
+    }
+  };
+
+  const isDeferred = text !== deferredValue;
+  const query = mode === 'deferred' ? deferredValue : listQuery;
 
   return (
     <>
       <div>
-        <input
-          type="radio"
-          name="mode"
-          value="sync"
-          checked={!isTransition}
-          onChange={() => setIsTransition(false)}
-        />{' '}
-        Обычный режим
-        <input
-          type="radio"
-          name="mode"
-          value="async"
-          checked={isTransition}
-          onChange={() => setIsTransition(true)}
-        />{' '}
-        useTransition
+        {(['sync', 'transition', 'deferred'] as const).map((value) => (
+          <label key={value}>
+            <input
+              type="radio"
+              name="mode"
+              value={value}
+              checked={mode === value}
+              onChange={() => handleModeChange(value)}
+            />
+            {value}
+          </label>
+        ))}
       </div>
+
       <label>
         Поиск
         <input value={text} onChange={handleChange} />
       </label>
-      {isPending && <div>Обновление списка...</div>}
-      <Results query={listQuery} />
+      {mode === 'transition' && isPending && <div>Обновляем результаты...</div>}
+      {mode === 'deferred' && isDeferred && <div>Обновляем результаты...</div>}
+
+      <div>Результаты по запросу: {query}</div>
+      <Results query={query} />
     </>
   );
 }

@@ -10,3 +10,5 @@ export interface IItem {
   id: string;
   title: string;
 }
+
+export type SearchMode = 'sync' | 'transition' | 'deferred';
