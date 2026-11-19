@@ -5,3 +5,9 @@ export interface ICourse {
   seats: number;
   version: number;
 }
+
+export interface PanelProps {
+  title: string;
+  children: React.ReactNode;
+  actions?: React.ReactNode;
+}
