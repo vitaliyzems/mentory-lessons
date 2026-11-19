@@ -15,26 +15,17 @@ function CourseCard({ item, query }: { item: IItem; query: string }) {
   );
 }
 
-const Results = memo(function Results({
-  query,
-  isPending,
-}: {
-  query: string;
-  isPending: boolean;
-}) {
+const Results = memo(function Results({ query }: { query: string }) {
   const normalizedQuery = query.trim().toLowerCase();
 
   return (
-    <>
-      {isPending && <div>Обновление списка...</div>}
-      <ul>
-        {items
-          .filter((item) => item.title.toLowerCase().includes(normalizedQuery))
-          .map((item) => (
-            <CourseCard key={item.id} item={item} query={query} />
-          ))}
-      </ul>
-    </>
+    <ul>
+      {items
+        .filter((item) => item.title.toLowerCase().includes(normalizedQuery))
+        .map((item) => (
+          <CourseCard key={item.id} item={item} query={query} />
+        ))}
+    </ul>
   );
 });
 
@@ -82,7 +73,8 @@ export function Search() {
         Поиск
         <input value={text} onChange={handleChange} />
       </label>
-      <Results query={listQuery} isPending={isPending} />
+      {isPending && <div>Обновление списка...</div>}
+      <Results query={listQuery} />
     </>
   );
 }
