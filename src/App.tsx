@@ -3,14 +3,17 @@ import type { ICourse } from './types';
 import courseDataJson from './data/courses.json';
 import Panel from './components/Panel/Panel';
 import ControlledFilter from './components/ControlledFilter/ControlledFilter';
-import UncontrolledFilter from './components/UncontrolledFilter/UncontrolledFilter';
 import CourseListView from './components/CourseListView/CourseListView';
+import Search from './components/Search/Search';
 import './App.css';
 
 const courseData = courseDataJson as ICourse[];
 
 function App() {
   const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<
+    ICourse['category'] | 'all'
+  >('all');
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const handleSelect = (id: string) => {
@@ -18,42 +21,45 @@ function App() {
     setSelectedId(id);
   };
 
-  const filteredCourses = courseData.filter((course) =>
-    course.title.toLowerCase().includes(search.trim().toLowerCase()),
-  );
+  const filteredCourses = courseData.filter((course) => {
+    const matchesTitle = course.title
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'all' || course.category === selectedCategory;
+
+    return matchesTitle && matchesCategory;
+  });
+
+  const handleReset = () => {
+    setSearch('');
+    setSelectedCategory('all');
+  };
 
   return (
     <>
-      <Panel title="Поиск">
+      <Panel
+        title="Фильтры"
+        actions={
+          <button type="button" onClick={handleReset}>
+            Сбросить все фильтры
+          </button>
+        }
+      >
         <div className="filters">
-          <div className="filter">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Введите название курса"
-            />
-          </div>
+          <Search search={search} setSearch={setSearch} />
+          <ControlledFilter
+            value={selectedCategory}
+            onChange={setSelectedCategory}
+          />
         </div>
       </Panel>
-      <Panel title="Фильтры">
-        <div className="filters">
-          <ControlledFilter />
-          <UncontrolledFilter />
-        </div>
-      </Panel>
-      <Panel title="Полный список">
+      <Panel title="Список курсов">
         <div>Выбранный ID курса: {selectedId ?? 'Курс не выбран'}</div>
+        <p>Найдено курсов: {filteredCourses.length}</p>
         <CourseListView
           items={filteredCourses}
           emptyText="Курсы не найдены"
-          onSelect={handleSelect}
-        />
-      </Panel>
-      <Panel title="Пустой список">
-        <CourseListView
-          items={[]}
-          emptyText="Список курсов пуст"
           onSelect={handleSelect}
         />
       </Panel>

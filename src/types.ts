@@ -22,3 +22,13 @@ export interface CourseCardProps {
   course: ICourse;
   onSelect: (id: string) => void;
 }
+
+export interface ISearchProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
+
+export interface IControlledFilterProps {
+  value: ICourse['category'] | 'all';
+  onChange: (value: ICourse['category'] | 'all') => void;
+}

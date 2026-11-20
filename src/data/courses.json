@@ -26,5 +26,117 @@
     "category": "quality",
     "seats": 5,
     "version": 1
+  },
+  {
+    "id": "javascript",
+    "title": "Современный JavaScript",
+    "category": "frontend",
+    "seats": 15,
+    "version": 1
+  },
+  {
+    "id": "html-css",
+    "title": "HTML и CSS с нуля",
+    "category": "frontend",
+    "seats": 10,
+    "version": 1
+  },
+  {
+    "id": "css-layout",
+    "title": "Адаптивная вёрстка",
+    "category": "frontend",
+    "seats": 7,
+    "version": 1
+  },
+  {
+    "id": "redux",
+    "title": "Управление состоянием Redux",
+    "category": "frontend",
+    "seats": 9,
+    "version": 1
+  },
+  {
+    "id": "react-hooks",
+    "title": "React Hooks на практике",
+    "category": "frontend",
+    "seats": 6,
+    "version": 1
+  },
+  {
+    "id": "vite",
+    "title": "Сборка проектов с Vite",
+    "category": "frontend",
+    "seats": 11,
+    "version": 1
+  },
+  {
+    "id": "nodejs",
+    "title": "Основы Node.js",
+    "category": "fullstack",
+    "seats": 8,
+    "version": 1
+  },
+  {
+    "id": "express",
+    "title": "Разработка API на Express",
+    "category": "fullstack",
+    "seats": 4,
+    "version": 1
+  },
+  {
+    "id": "postgresql",
+    "title": "Работа с PostgreSQL",
+    "category": "fullstack",
+    "seats": 13,
+    "version": 1
+  },
+  {
+    "id": "prisma",
+    "title": "ORM и Prisma",
+    "category": "fullstack",
+    "seats": 5,
+    "version": 1
+  },
+  {
+    "id": "rest-api",
+    "title": "Проектирование REST API",
+    "category": "fullstack",
+    "seats": 0,
+    "version": 1
+  },
+  {
+    "id": "unit-testing",
+    "title": "Модульное тестирование",
+    "category": "quality",
+    "seats": 10,
+    "version": 1
+  },
+  {
+    "id": "playwright",
+    "title": "Автоматизация тестирования Playwright",
+    "category": "quality",
+    "seats": 6,
+    "version": 1
+  },
+  {
+    "id": "jest",
+    "title": "Тестирование с Jest",
+    "category": "quality",
+    "seats": 8,
+    "version": 1
+  },
+  {
+    "id": "e2e",
+    "title": "End-to-End тестирование",
+    "category": "quality",
+    "seats": 3,
+    "version": 1
+  },
+  {
+    "id": "accessibility",
+    "title": "Тестирование доступности интерфейсов",
+    "category": "quality",
+    "seats": 7,
+    "version": 1
   }
 ]
