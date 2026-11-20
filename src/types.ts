@@ -11,3 +11,14 @@ export interface PanelProps {
   children: React.ReactNode;
   actions?: React.ReactNode;
 }
+
+export interface CourseListViewProps {
+  items: ICourse[];
+  emptyText: string;
+  onSelect: (id: string) => void;
+}
+
+export interface CourseCardProps {
+  course: ICourse;
+  onSelect: (id: string) => void;
+}

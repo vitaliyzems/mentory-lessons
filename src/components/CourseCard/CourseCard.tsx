@@ -1,13 +1,10 @@
-import type { ICourse } from '../../types';
+import type { CourseCardProps } from '../../types';
 import Panel from '../Panel/Panel';
 
-function CourseCard({ course }: { course: ICourse }) {
+function CourseCard({ course, onSelect }: CourseCardProps) {
   const handleSelect = () => {
-    console.log('Course selected:', course.id);
-    localStorage.setItem('selected-course', course.id);
+    onSelect(course.id);
   };
-
-  console.log('CourseCard render:', course.id);
 
   return (
     <Panel
