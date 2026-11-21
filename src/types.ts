@@ -16,11 +16,17 @@ export interface CourseListViewProps {
   items: ICourse[];
   emptyText: string;
   onSelect: (id: string) => void;
+  options: {
+    isVisible: boolean;
+  };
 }
 
 export interface CourseCardProps {
   course: ICourse;
   onSelect: (id: string) => void;
+  options: {
+    isVisible: boolean;
+  };
 }
 
 export interface ISearchProps {
@@ -37,4 +43,12 @@ export type SortDirection = 'asc' | 'desc';
 
 export interface CoursesProps {
   courses: ICourse[];
+}
+
+export interface CourseSelectorProps {
+  courses: ICourse[];
+  onSelect: (id: string) => void;
+  options: {
+    isVisible: boolean;
+  };
 }
