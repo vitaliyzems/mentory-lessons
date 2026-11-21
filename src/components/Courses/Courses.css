@@ -1,0 +1,66 @@
+.course-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.counter__button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  background: #fff;
+  color: #334155;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.counter__button:hover {
+  background: #dbeafe;
+}
+
+.counter__button:active {
+  transform: scale(0.94);
+}
+
+.counter__value {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sort-button {
+  padding: 10px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #fff;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.sort-button:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.course-controls button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}

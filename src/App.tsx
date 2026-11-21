@@ -1,69 +1,38 @@
-import { useState } from 'react';
-import type { ICourse } from './types';
-import courseDataJson from './data/courses.json';
-import Panel from './components/Panel/Panel';
-import ControlledFilter from './components/ControlledFilter/ControlledFilter';
-import CourseListView from './components/CourseListView/CourseListView';
-import Search from './components/Search/Search';
+import { generateCourses } from './utils/generateCourses';
+import CoursesWithMemo from './components/Courses/CoursesWithMemo/CoursesWithMemo';
+import CoursesWithoutMemo from './components/Courses/CoursesWithoutMemo/CoursesWithoutMemo';
 import './App.css';
+import { useState } from 'react';
 
-const courseData = courseDataJson as ICourse[];
+const courses = generateCourses();
 
 function App() {
-  const [search, setSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<
-    ICourse['category'] | 'all'
-  >('all');
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
-  const handleSelect = (id: string) => {
-    localStorage.setItem('selected-course', id);
-    setSelectedId(id);
-  };
-
-  const filteredCourses = courseData.filter((course) => {
-    const matchesTitle = course.title
-      .toLowerCase()
-      .includes(search.trim().toLowerCase());
-    const matchesCategory =
-      selectedCategory === 'all' || course.category === selectedCategory;
-
-    return matchesTitle && matchesCategory;
-  });
-
-  const handleReset = () => {
-    setSearch('');
-    setSelectedCategory('all');
-  };
+  const [activeMode, setActiveMode] = useState<'without' | 'with'>('without');
 
   return (
-    <>
-      <Panel
-        title="Фильтры"
-        actions={
-          <button type="button" onClick={handleReset}>
-            Сбросить все фильтры
-          </button>
-        }
-      >
-        <div className="filters">
-          <Search search={search} setSearch={setSearch} />
-          <ControlledFilter
-            value={selectedCategory}
-            onChange={setSelectedCategory}
-          />
-        </div>
-      </Panel>
-      <Panel title="Список курсов">
-        <div>Выбранный ID курса: {selectedId ?? 'Курс не выбран'}</div>
-        <p>Найдено курсов: {filteredCourses.length}</p>
-        <CourseListView
-          items={filteredCourses}
-          emptyText="Курсы не найдены"
-          onSelect={handleSelect}
-        />
-      </Panel>
-    </>
+    <div className="comparison">
+      <div className="comparison__switch">
+        <button
+          className={activeMode === 'without' ? 'active' : ''}
+          onClick={() => setActiveMode('without')}
+        >
+          Без useMemo
+        </button>
+
+        <button
+          className={activeMode === 'with' ? 'active' : ''}
+          onClick={() => setActiveMode('with')}
+        >
+          С useMemo
+        </button>
+      </div>
+
+      {activeMode === 'without' ? (
+        <CoursesWithoutMemo courses={courses} />
+      ) : (
+        <CoursesWithMemo courses={courses} />
+      )}
+    </div>
   );
 }
 

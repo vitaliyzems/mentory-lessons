@@ -32,3 +32,9 @@ export interface IControlledFilterProps {
   value: ICourse['category'] | 'all';
   onChange: (value: ICourse['category'] | 'all') => void;
 }
+
+export type SortDirection = 'asc' | 'desc';
+
+export interface CoursesProps {
+  courses: ICourse[];
+}
