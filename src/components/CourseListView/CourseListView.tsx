@@ -6,6 +6,7 @@ function CourseListView({
   ids,
   emptyText,
   onSelect,
+  onToggle,
 }: CourseListViewProps) {
   return items.length === 0 ? (
     <div>{emptyText}</div>
@@ -17,6 +18,7 @@ function CourseListView({
           course={course}
           key={course.id}
           onSelect={onSelect}
+          onToggle={onToggle}
         />
       ))}
     </div>

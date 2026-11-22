@@ -5,6 +5,7 @@ import Panel from '../Panel/Panel';
 function FavoritesPanel({
   courses,
   ids,
+  onSelect,
   onToggle,
   onClear,
 }: FavoritesPanelProps) {
@@ -18,7 +19,8 @@ function FavoritesPanel({
       <CourseListView
         items={favoriteCourses}
         ids={ids}
-        onSelect={onToggle}
+        onSelect={onSelect}
+        onToggle={onToggle}
         emptyText="Нет избранных курсов"
       />
     </Panel>

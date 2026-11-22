@@ -1,3 +1,61 @@
+
+.dashboard-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 5px;
+  margin-bottom: 24px;
+  background: #f1f3f5;
+  border-radius: 12px;
+}
+
+.dashboard-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #667085;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-nav__item:hover {
+  color: #1d2939;
+}
+
+.dashboard-nav__item.active {
+  background: #ffffff;
+  color: #1d2939;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.12);
+}
+
+.dashboard-nav__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 6px;
+  background: #e9edf3;
+  color: #475467;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dashboard-nav__item.active .dashboard-nav__count {
+  background: #e0eaff;
+  color: #315cba;
+}
+
 .courses {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -124,4 +182,40 @@
 .comparison__switch button:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(200px, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+  align-items: stretch;
+}
+
+.filter {
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.filter input,
+.filter select {
+  padding: 9px 11px;
+  font-size: 14px;
+}
+
+.filter__actions {
+  gap: 6px;
+}
+
+.filter button {
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
 }

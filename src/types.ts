@@ -17,12 +17,14 @@ export interface CourseListViewProps {
   ids: string[];
   emptyText: string;
   onSelect: (id: string) => void;
+  onToggle: (id: string) => void;
 }
 
 export interface CourseCardProps {
   ids: string[];
   course: ICourse;
   onSelect: (id: string) => void;
+  onToggle: (id: string) => void;
 }
 
 export interface ISearchProps {
@@ -45,11 +47,13 @@ export interface CourseSelectorProps {
   courses: ICourse[];
   ids: string[];
   onSelect: (id: string) => void;
+  onToggle: (id: string) => void;
 }
 
 export interface FavoritesPanelProps {
   courses: ICourse[];
   ids: string[];
+  onSelect: (id: string) => void;
   onToggle: (id: string) => void;
   onClear: () => void;
 }
