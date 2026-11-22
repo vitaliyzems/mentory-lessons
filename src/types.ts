@@ -14,19 +14,15 @@ export interface PanelProps {
 
 export interface CourseListViewProps {
   items: ICourse[];
+  ids: string[];
   emptyText: string;
   onSelect: (id: string) => void;
-  options: {
-    isVisible: boolean;
-  };
 }
 
 export interface CourseCardProps {
+  ids: string[];
   course: ICourse;
   onSelect: (id: string) => void;
-  options: {
-    isVisible: boolean;
-  };
 }
 
 export interface ISearchProps {
@@ -47,8 +43,13 @@ export interface CoursesProps {
 
 export interface CourseSelectorProps {
   courses: ICourse[];
+  ids: string[];
   onSelect: (id: string) => void;
-  options: {
-    isVisible: boolean;
-  };
+}
+
+export interface FavoritesPanelProps {
+  courses: ICourse[];
+  ids: string[];
+  onToggle: (id: string) => void;
+  onClear: () => void;
 }

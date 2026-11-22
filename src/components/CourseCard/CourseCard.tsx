@@ -1,7 +1,7 @@
 import type { CourseCardProps } from '../../types';
 import Panel from '../Panel/Panel';
 
-function CourseCard({ course, onSelect, options }: CourseCardProps) {
+function CourseCard({ ids, course, onSelect }: CourseCardProps) {
   const handleSelect = () => {
     onSelect(course.id);
   };
@@ -9,11 +9,18 @@ function CourseCard({ course, onSelect, options }: CourseCardProps) {
   return (
     <Panel
       title={course.title}
-      actions={<button onClick={handleSelect}>Выбрать</button>}
+      actions={
+        <button
+          className={ids.includes(course.id) ? 'selected' : ''}
+          onClick={handleSelect}
+        >
+          {ids.includes(course.id) ? 'Убрать из избранного' : 'В избранное'}
+        </button>
+      }
     >
       <div>{course.category}</div>
-      {options.isVisible && <div>{course.seats}</div>}
-      {options.isVisible && <div>{course.version}</div>}
+      <div>{course.seats}</div>
+      <div>{course.version}</div>
     </Panel>
   );
 }

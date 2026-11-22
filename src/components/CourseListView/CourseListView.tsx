@@ -3,9 +3,9 @@ import CourseCard from '../CourseCard/CourseCard';
 
 function CourseListView({
   items,
+  ids,
   emptyText,
   onSelect,
-  options,
 }: CourseListViewProps) {
   return items.length === 0 ? (
     <div>{emptyText}</div>
@@ -13,10 +13,10 @@ function CourseListView({
     <div className="courses">
       {items.map((course) => (
         <CourseCard
+          ids={ids}
           course={course}
           key={course.id}
           onSelect={onSelect}
-          options={options}
         />
       ))}
     </div>

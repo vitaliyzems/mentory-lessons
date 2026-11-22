@@ -62,6 +62,10 @@
   background: #0f172a;
 }
 
+.panel__actions button.selected  {
+  background: #c62c15;
+}
+
 .panel__actions button:focus-visible {
   outline: 3px solid rgb(100 116 139 / 35%);
   outline-offset: 3px;
