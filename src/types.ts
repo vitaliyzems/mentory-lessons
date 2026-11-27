@@ -9,5 +9,5 @@ export interface ICourse {
 export interface CourseCardProps {
   course: ICourse;
   selectedId: string | null;
-  onSelect: (id: string) => void;
+  onSelect: (course: ICourse) => void;
 }

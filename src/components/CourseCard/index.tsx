@@ -5,14 +5,20 @@ export function CourseCard({ course, onSelect, selectedId }: CourseCardProps) {
   const isSelected = selectedId === course.id;
 
   return (
-    <div>
+    <div
+      style={{
+        border: '1px solid black',
+        borderRadius: '10px',
+        padding: '16px 0',
+      }}
+    >
       <div>{course.title}</div>
-      <div>{course.category}</div>
-      <div>{course.seats}</div>
-      <div>{course.version}</div>
+      <div>Категория: {course.category}</div>
+      <div>Мест: {course.seats}</div>
+      <div>Версия: {course.version}</div>
       <button
         className={isSelected ? 'selected' : ''}
-        onClick={() => onSelect(course.id)}
+        onClick={() => onSelect(course)}
       >
         {isSelected ? 'Отменить выбор' : 'Выбрать'}
       </button>
